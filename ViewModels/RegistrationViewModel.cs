@@ -202,7 +202,7 @@ namespace Password_Form.ViewModels
                     };
 
                     userRepository.Add(userModel);
-                    var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username, Password));
+                    bool isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username, Password));
                     if (isValidUser)
                     {
                         Thread.CurrentPrincipal = new GenericPrincipal(
