@@ -1,77 +1,99 @@
-﻿<Window x:Class="Password_Form.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:vm="clr-namespace:Password_Form.ViewModels"
-        xmlns:views="clr-namespace:Password_Form.Views"
-        xmlns:local="clr-namespace:Password_Form" xmlns:customcontrols="clr-namespace:Password_Form.CustomControls"
-        mc:Ignorable="d"
-        Title="Шок Шок лох" Height="565" Width="365" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+﻿<Window
+    x:Class="Password_Form.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:customcontrols="clr-namespace:Password_Form.CustomControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Password_Form"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="clr-namespace:Password_Form.Views"
+    xmlns:vm="clr-namespace:Password_Form.ViewModels"
+    Title="Шок Шок лох"
+    Width="365"
+    Height="565"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
 
     <Window.Background>
-        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FF1F2939"/>
-            <GradientStop Color="White"/>
-            <GradientStop Color="#FF1C222C" Offset="0"/>
-            <GradientStop Color="#FF1C222C" Offset="1"/>
+        <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+            <GradientStop Color="#FF1F2939" />
+            <GradientStop Color="White" />
+            <GradientStop Offset="0" Color="#FF1C222C" />
+            <GradientStop Offset="1" Color="#FF1C222C" />
         </LinearGradientBrush>
     </Window.Background>
 
     <Grid>
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="490"/>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="490" />
         </Grid.RowDefinitions>
 
-        <Grid Name="ToolBar" Background="Transparent" MouseDown="ToolBar_MouseDown">
-            <Polygon Fill="white" Opacity="0.2"
-                 Points="107,0,
-                 115,7,
-                 249,7
-                 257,0"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Image Name="MinButton" Height="13" Width="13" Margin="5" MouseDown="MinButton_MouseDown">
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type vm:LoginViewModel}">
+                <views:LoginView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:RegistrationViewModel}">
+                <views:RegistrationView />
+            </DataTemplate>
+        </Grid.Resources>
+
+        <Grid
+            Name="ToolBar"
+            Background="Transparent"
+            MouseDown="ToolBar_MouseDown">
+            <Polygon
+                Fill="white"
+                Opacity="0.2"
+                Points="107,0,                  115,7,                  249,7                  257,0" />
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <Image
+                    Name="MinButton"
+                    Width="13"
+                    Height="13"
+                    Margin="5"
+                    Cursor="Hand"
+                    MouseDown="MinButton_MouseDown">
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
-                            <Setter Property="Source" Value="/Source/Кнопка свертывания.png"/>
+                            <Setter Property="Source" Value="/Source/Кнопка свертывания.png" />
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=MinButton}"
-                                             Value="true">
-                                    <Setter Property="Source" Value="/Source/Кнопка свертывания.png"/>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=MinButton}" Value="true">
+                                    <Setter Property="Source" Value="/Source/Кнопка свертывания.png" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </Image.Style>
                     <Image.Effect>
-                        <BlurEffect Radius="0 "></BlurEffect>
+                        <BlurEffect Radius="0 " />
                     </Image.Effect>
                 </Image>
-                <Image Name="ExitButton" Height="13" Width="13" Margin="5,5,10,5" MouseDown="ExitButton_MouseDown">
+                <Image
+                    Name="ExitButton"
+                    Width="13"
+                    Height="13"
+                    Margin="5,5,10,5"
+                    Cursor="Hand"
+                    MouseDown="ExitButton_MouseDown">
                     <Image.Style>
                         <Style TargetType="{x:Type Image}">
-                            <Setter Property="Source" Value="/Source/Кнопка крестика.png"/>
+                            <Setter Property="Source" Value="/Source/Кнопка крестика.png" />
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=ExitButton}"
-                                             Value="true">
-                                    <Setter Property="Source" Value="/Source/Кнопка крестика.png"/>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=ExitButton}" Value="true">
+                                    <Setter Property="Source" Value="/Source/Кнопка крестика.png" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </Image.Style>
                     <Image.Effect>
-                        <BlurEffect Radius="0"></BlurEffect>
+                        <BlurEffect Radius="0" />
                     </Image.Effect>
                 </Image>
             </StackPanel>
-
-            <ContentControl>
-                <ContentControl.Resources>
-                    <DataTemplate DataType="{x:Type vm:LoginViewModel}">
-                        <views:LoginView/>
-                    </DataTemplate>
-                </ContentControl.Resources>
-            </ContentControl>
         </Grid>
+        <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}" />
     </Grid>
 </Window>
