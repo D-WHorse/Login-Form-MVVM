@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Password_Form" 
         xmlns:customcontrols="clr-namespace:Password_Form.CustomControls"
-        d:DesignHeight="556"
+        d:DesignHeight="531"
         d:DesignWidth="365"
         mc:Ignorable="d">
 
@@ -49,26 +49,25 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"/>
             <RowDefinition Height="100"/>
             <RowDefinition Height="300"/>
             <RowDefinition Height="90"/>
         </Grid.RowDefinitions>
 
-        <Grid Name="LogoContainer" Background="Transparent" Grid.Row="1">
+        <Grid Name="LogoContainer" Background="Transparent" Grid.Row="0">
             <TextBlock Text="RuАгенство" Foreground="White" FontSize="48" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <TextBlock Text="PRO" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="18" Margin="0,0,24,5"/>
         </Grid>
 
         <TextBlock Text="{Binding ErrorMessage}" Foreground="#FFEA2929" FontSize="13"
                    HorizontalAlignment="Center"
-                   Margin="0,25,0,0" Grid.Row="2" VerticalAlignment="Top"
+                   Margin="0,25,0,0" Grid.Row="1" VerticalAlignment="Top"
                    TextAlignment="Center"
                    Background="#FF1C222C" Width="360" FontWeight="DemiBold"
                    TextWrapping="Wrap"/>
 
         <TextBox x:Name="LoginField" 
-                 Grid.Row="2" 
+                 Grid.Row="1" 
                  Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
                  Style="{StaticResource TB}" 
                  Margin="25,55,25,0" 
@@ -76,7 +75,7 @@
         <TextBlock IsHitTestVisible="False" 
                    FontSize="14" 
                    Text="Логин" 
-                   Grid.Row="2" 
+                   Grid.Row="1" 
                    Margin="37,63,0,0" 
                    VerticalAlignment="Top" 
                    Foreground="#FF535559">
@@ -93,11 +92,11 @@
         </TextBlock>
 
         <customcontrols:BindablePasswordBox Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            Grid.Row="2"
+                                            Grid.Row="1"
                                             Height="35"
                                             Margin="25,0,25,60"/>
 
-        <ToggleButton Name="TGB" Grid.Row="2" 
+        <ToggleButton Name="TGB" Grid.Row="1" 
                       Height="30" Width="330" 
                       HorizontalAlignment="Left"
                       VerticalAlignment="Top" 
@@ -159,7 +158,7 @@
 
         <Button x:Name="btnLogin"
                 Command="{Binding LoginCommand}"
-                Grid.Row="2"
+                Grid.Row="1"
                 Height="35"
                 BorderThickness="0"
                 Content="Войти"
@@ -192,15 +191,15 @@
         </Button>
 
         <Polygon Points="0,0,330,0" Stroke="#FF535559" StrokeThickness="1" HorizontalAlignment="Left"
-                 Margin="25,0,25,60" Grid.Row="2" VerticalAlignment="Bottom"/>
+                 Margin="25,0,25,60" Grid.Row="1" VerticalAlignment="Bottom"/>
         <TextBlock Text="Еще нет аккаунта?" Foreground="#FFACB3BF" FontSize="13"
                    HorizontalAlignment="Center"
-                   Margin="0,0,0,53" Grid.Row="2" VerticalAlignment="Bottom"
+                   Margin="0,0,0,53" Grid.Row="1" VerticalAlignment="Bottom"
                    TextAlignment="Center"
                    Background="#FF1C222C" Width="160" FontWeight="DemiBold"/>
         <Button x:Name="btnReg"
                 Command="{Binding ToRegistrationCommand}"
-                Grid.Row="2"
+                Grid.Row="1"
                 Height="35"
                 BorderThickness="0"
                 Content="Зарегистрироваться"

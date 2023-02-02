@@ -23,7 +23,7 @@
             <RowDefinition Height="25"/>
             <RowDefinition Height="490"/>
         </Grid.RowDefinitions>
-        
+
         <Grid Name="ToolBar" Background="Transparent" MouseDown="ToolBar_MouseDown">
             <Polygon Fill="white" Opacity="0.2"
                  Points="107,0,
@@ -64,14 +64,14 @@
                     </Image.Effect>
                 </Image>
             </StackPanel>
-        </Grid>
 
-        <ContentControl>
-            <ContentControl.Resources>
-                <DataTemplate DataType="{x:Type vm:LoginViewModel}">
-                    <views:LoginView/>
-                </DataTemplate>
-            </ContentControl.Resources>
-        </ContentControl>
+            <ContentControl>
+                <ContentControl.Resources>
+                    <DataTemplate DataType="{x:Type vm:LoginViewModel}">
+                        <views:LoginView/>
+                    </DataTemplate>
+                </ContentControl.Resources>
+            </ContentControl>
+        </Grid>
     </Grid>
 </Window>

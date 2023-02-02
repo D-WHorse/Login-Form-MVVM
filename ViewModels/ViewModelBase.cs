@@ -3,7 +3,17 @@ using System.Runtime.CompilerServices;
 
 namespace Password_Form.ViewModels
 {
-    public abstract class ViewModelBase : INotifyPropertyChanged
+    public class ViewModelBase : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+
+    /*public abstract class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -19,5 +29,5 @@ namespace Password_Form.ViewModels
             OnPropertyChanged();
             return true;
         }
-    }
+    }*/
 }
