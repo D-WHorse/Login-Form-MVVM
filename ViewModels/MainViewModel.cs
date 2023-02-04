@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Password_Form.Stores;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,24 +9,24 @@ namespace Password_Form.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        public MainViewModel()
+        /*public MainViewModel()
         {
             CurrentViewModel = new LoginViewModel();
         }
 
-        public ViewModelBase CurrentViewModel { get; }
+        public ViewModelBase CurrentViewModel { get; }*/
 
-        /*//private readonly NavigationStore _navigationStore;
+        private readonly NavigationStore _navigationStore;
         public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
 
         public MainViewModel(NavigationStore navigationStore)
         {
             _navigationStore = navigationStore;
 
-            _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
+            //_navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
         }
 
-        private void OnCurrentViewModelChanged()
+        /*private void OnCurrentViewModelChanged()
         {
             OnPropertyChanged(nameof(CurrentViewModel));
         }*/

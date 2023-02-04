@@ -6,6 +6,7 @@ using System.Windows.Input;
 using Password_Form.Models;
 using Password_Form.Repositories;
 using System;
+using Password_Form.Commands;
 
 namespace Password_Form.ViewModels
 {
@@ -95,17 +96,16 @@ namespace Password_Form.ViewModels
 
         //-> Commands
         public ICommand LoginCommand { get; }
-        public ICommand ToRegistrationCommand { get; }
-        public ICommand RecoverPasswordCommand { get; }
-        public ICommand ShowPasswordCommand { get; }
-        public ICommand RememberPasswordCommand { get; }
+        public ICommand NavigateToRegistrationCommand { get; }
+        //public ICommand ShowPasswordCommand { get; }
 
         //Constructor
-        public LoginViewModel()
+        public LoginViewModel(Stores.NavigationStore navigationStore)
         {
             userRepository = new UserRepository();
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
-            ToRegistrationCommand = new ViewModelCommand(ExecuteToRegistrationCommand);
+            //NavigateToRegistrationCommand = new ViewModelCommand(ExecuteNavigateToRegistrationCommand);
+            NavigateToRegistrationCommand = new NavigateDashboardCommand(navigationStore);
             //RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("", ""));
         }
 
@@ -144,15 +144,10 @@ namespace Password_Form.ViewModels
             }
         }
 
-        private void ExecuteToRegistrationCommand(object obj)
+        /*private void ExecuteNavigateToRegistrationCommand(object obj)
         {
             LoginViewModel.ButtonClicked = "Sign Up";
             IsViewVisible = false;
-        }
-
-        /*private void ExecuteRecoverPassCommand(string username, string email)
-        {
-            throw new NotImplementedException();
         }*/
     }
 }
