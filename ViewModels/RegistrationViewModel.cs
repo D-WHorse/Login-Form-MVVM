@@ -22,7 +22,6 @@ namespace Password_Form.ViewModels
         private bool _isViewVisible = true;
 
         private IUserRepository userRepository;
-        private UserModel userModel;
 
         //Properties
         public string Username
@@ -142,7 +141,6 @@ namespace Password_Form.ViewModels
         public RegistrationViewModel()
         {
             userRepository = new UserRepository();
-            userModel = new UserModel();
             RegistrationCommand = new ViewModelCommand(ExecuteRegistrationCommand, CanExecuteRegistrationCommand);
         }
 
@@ -159,30 +157,6 @@ namespace Password_Form.ViewModels
                 validData = true;
             return validData;
         }
-
-        /*private void ExecuteRegistrationCommand(object obj)
-        {
-            LoginViewModel.ButtonClicked = "Login";
-
-            if (_isntShokShok)
-            {
-                var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username, Password));
-                if (isValidUser)
-                {
-                    Thread.CurrentPrincipal = new GenericPrincipal(
-                        new GenericIdentity(Username), null); // null это роль!!!
-                    IsViewVisible = false;
-                }
-                else
-                {
-                    ErrorMessage = "(*Звуковой сигнал*) Неправильно! Попробуй еще раз.";
-                }
-            }
-            else
-            {
-                ErrorMessage = "Вы не согласились с 4 правилом!";
-            }
-        }*/
         private void ExecuteRegistrationCommand(object obj)
         {
             LoginViewModel.ButtonClicked = "Login";

@@ -105,7 +105,7 @@ namespace Password_Form.ViewModels
             userRepository = new UserRepository();
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             //NavigateToRegistrationCommand = new ViewModelCommand(ExecuteNavigateToRegistrationCommand);
-            NavigateToRegistrationCommand = new NavigateDashboardCommand(navigationStore);
+            NavigateToRegistrationCommand = new NavigateToRegistrationCommand(navigationStore);
             //RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("", ""));
         }
 
@@ -143,11 +143,5 @@ namespace Password_Form.ViewModels
                 ErrorMessage = "Вы не согласились с 4 правилом!";
             }
         }
-
-        /*private void ExecuteNavigateToRegistrationCommand(object obj)
-        {
-            LoginViewModel.ButtonClicked = "Sign Up";
-            IsViewVisible = false;
-        }*/
     }
 }
