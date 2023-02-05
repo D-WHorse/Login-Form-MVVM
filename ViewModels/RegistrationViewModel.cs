@@ -7,6 +7,7 @@ using Password_Form.Models;
 using Password_Form.Repositories;
 using Password_Form.Stores;
 using Password_Form.Commands;
+using Password_Form.Services;
 
 namespace Password_Form.ViewModels
 {
@@ -145,7 +146,9 @@ namespace Password_Form.ViewModels
         {
             userRepository = new UserRepository();
             //RegistrationCommand = new ViewModelCommand(ExecuteRegistrationCommand, CanExecuteRegistrationCommand);
-            NavigateToLoginCommand = new NavigateCommand<LoginViewModel>(navigationStore, () => new LoginViewModel(navigationStore));
+            NavigateToLoginCommand =
+                new NavigateCommand<LoginViewModel>(new NavigationService<LoginViewModel>
+                (navigationStore, () => new LoginViewModel(navigationStore)));
         }
 
         private bool CanExecuteRegistrationCommand(object obj)

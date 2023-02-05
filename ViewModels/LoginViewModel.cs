@@ -8,6 +8,7 @@ using Password_Form.Repositories;
 using System;
 using Password_Form.Commands;
 using Password_Form.Stores;
+using Password_Form.Services;
 
 namespace Password_Form.ViewModels
 {
@@ -104,11 +105,13 @@ namespace Password_Form.ViewModels
         public LoginViewModel(NavigationStore navigationStore)
         {
             userRepository = new UserRepository();
-            LoginCommand = new NavigateCommand<RegistrationViewModel>(navigationStore, () => new RegistrationViewModel(navigationStore));
-            NavigateToRegistrationCommand = new NavigateCommand<RegistrationViewModel>(navigationStore, () => new RegistrationViewModel(navigationStore));
+            //LoginCommand = new LoginCommand(new DashboardViewModel(), );
+            NavigateToRegistrationCommand = 
+                new NavigateCommand<RegistrationViewModel>(new NavigationService<RegistrationViewModel>
+                (navigationStore, () => new RegistrationViewModel(navigationStore)));
         }
 
-        private bool CanExecuteLoginCommand(object obj)
+        /*private bool CanExecuteLoginCommand(object obj)
         {
             bool validData;
             if (string.IsNullOrWhiteSpace(Username) || Username.Length < 3 ||
@@ -141,6 +144,6 @@ namespace Password_Form.ViewModels
             {
                 ErrorMessage = "Вы не согласились с 4 правилом!";
             }
-        }
+        }*/
     }
 }

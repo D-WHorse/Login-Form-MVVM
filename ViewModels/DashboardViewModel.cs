@@ -1,5 +1,6 @@
 ﻿using Password_Form.Models;
 using Password_Form.Repositories;
+using Password_Form.Stores;
 using System.Threading;
 
 namespace Password_Form.ViewModels
@@ -24,7 +25,7 @@ namespace Password_Form.ViewModels
             }
         }
 
-        public DashboardViewModel()
+        public DashboardViewModel(NavigationStore navigationStore)
         {
             userRepository = new UserRepository();
             CurrentUserAccount = new UserAccountModel();
