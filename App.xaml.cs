@@ -26,6 +26,8 @@ namespace Password_Form
             //INavigationService<LoginViewModel> loginNavigationService = CreateLoginVeiwModel();
             //loginNavigationService.Navigate();
 
+            _navigationStore.CurrentViewModel = new LoginViewModel(_navigationStore);
+
             MainWindow = new MainWindow()
             {
                 DataContext = new MainViewModel(_navigationStore)
@@ -34,39 +36,5 @@ namespace Password_Form
 
             base.OnStartup(e);
         }
-
-        /*protected void ApplicationStart(object sender, StartupEventArgs e)
-        {
-            var loginView = new LoginView();
-            loginView.Show();
-            loginView.IsVisibleChanged += (s, ev) =>
-            {
-                if (loginView.IsVisible == false && loginView.IsLoaded)
-                {
-                    if (LoginViewModel.ButtonClicked == "Login")
-                    {
-                        var dashboard = new Dashboard();
-                        dashboard.Show();
-                        loginView.Close();
-                    }
-                    else if (LoginViewModel.ButtonClicked == "Sign Up")
-                    {
-                        var registration = new RegistrationView();
-                        registration.Show();
-                        loginView.Close();
-
-                        *//*if (registration.IsVisible == false && registration.IsLoaded)
-                        {
-                            if (LoginViewModel.ButtonClicked == "Register")
-                            {
-                                var dashboard = new Dashboard();
-                                dashboard.Show();
-                                registration.Close();
-                            }
-                        }*//*
-                    }
-                }
-            };
-        }*/
     }
 }

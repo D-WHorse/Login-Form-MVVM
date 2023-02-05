@@ -5,6 +5,8 @@ using System.Threading;
 using System.Windows.Input;
 using Password_Form.Models;
 using Password_Form.Repositories;
+using Password_Form.Stores;
+using Password_Form.Commands;
 
 namespace Password_Form.ViewModels
 {
@@ -136,12 +138,14 @@ namespace Password_Form.ViewModels
 
         //-> Commands
         public ICommand RegistrationCommand { get; }
+        public ICommand NavigateToLoginCommand { get; }
         public ICommand ShowPasswordCommand { get; }
 
-        public RegistrationViewModel()
+        public RegistrationViewModel(NavigationStore navigationStore)
         {
             userRepository = new UserRepository();
             RegistrationCommand = new ViewModelCommand(ExecuteRegistrationCommand, CanExecuteRegistrationCommand);
+            NavigateToLoginCommand = new NavigateToLoginCommand(navigationStore);
         }
 
         private bool CanExecuteRegistrationCommand(object obj)

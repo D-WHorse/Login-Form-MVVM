@@ -9,13 +9,6 @@ namespace Password_Form.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        /*public MainViewModel()
-        {
-            CurrentViewModel = new LoginViewModel();
-        }
-
-        public ViewModelBase CurrentViewModel { get; }*/
-
         private readonly NavigationStore _navigationStore;
         public ViewModelBase CurrentViewModel => _navigationStore.CurrentViewModel;
 
@@ -23,12 +16,12 @@ namespace Password_Form.ViewModels
         {
             _navigationStore = navigationStore;
 
-            //_navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
+            _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
         }
 
-        /*private void OnCurrentViewModelChanged()
+        private void OnCurrentViewModelChanged()
         {
             OnPropertyChanged(nameof(CurrentViewModel));
-        }*/
+        }
     }
 }

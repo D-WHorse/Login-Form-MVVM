@@ -9,6 +9,22 @@ namespace Password_Form.Stores
 {
     public class NavigationStore
     {
-        public ViewModelBase CurrentViewModel { get; set; }
+        private ViewModelBase _currentViewModel;
+        public ViewModelBase CurrentViewModel
+        {
+            get => _currentViewModel;
+            set
+            {
+                _currentViewModel = value;
+                OnCurrentViewModelChanged();
+            }
+        }
+
+        public event Action CurrentViewModelChanged;
+
+        private void OnCurrentViewModelChanged()
+        {
+            CurrentViewModelChanged?.Invoke();
+        }
     }
 }

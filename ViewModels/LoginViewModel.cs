@@ -7,6 +7,7 @@ using Password_Form.Models;
 using Password_Form.Repositories;
 using System;
 using Password_Form.Commands;
+using Password_Form.Stores;
 
 namespace Password_Form.ViewModels
 {
@@ -100,11 +101,10 @@ namespace Password_Form.ViewModels
         //public ICommand ShowPasswordCommand { get; }
 
         //Constructor
-        public LoginViewModel(Stores.NavigationStore navigationStore)
+        public LoginViewModel(NavigationStore navigationStore)
         {
             userRepository = new UserRepository();
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
-            //NavigateToRegistrationCommand = new ViewModelCommand(ExecuteNavigateToRegistrationCommand);
             NavigateToRegistrationCommand = new NavigateToRegistrationCommand(navigationStore);
             //RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPassCommand("", ""));
         }
