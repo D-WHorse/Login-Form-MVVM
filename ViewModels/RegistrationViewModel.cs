@@ -144,8 +144,8 @@ namespace Password_Form.ViewModels
         public RegistrationViewModel(NavigationStore navigationStore)
         {
             userRepository = new UserRepository();
-            RegistrationCommand = new ViewModelCommand(ExecuteRegistrationCommand, CanExecuteRegistrationCommand);
-            NavigateToLoginCommand = new NavigateToLoginCommand(navigationStore);
+            //RegistrationCommand = new ViewModelCommand(ExecuteRegistrationCommand, CanExecuteRegistrationCommand);
+            NavigateToLoginCommand = new NavigateCommand<LoginViewModel>(navigationStore, () => new LoginViewModel(navigationStore));
         }
 
         private bool CanExecuteRegistrationCommand(object obj)

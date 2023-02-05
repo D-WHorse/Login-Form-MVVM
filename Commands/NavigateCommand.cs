@@ -8,17 +8,19 @@ using System.Threading.Tasks;
 
 namespace Password_Form.Commands
 {
-    public class NavigateToLoginCommand : CommandBase
+    public class NavigateCommand<TViewModel> : CommandBase
+        where TViewModel : ViewModelBase
     {
         private readonly NavigationStore _navigationStore;
-        public NavigateToLoginCommand(NavigationStore navigationStore)
+        private readonly Func<TViewModel> _createViewModel;
+        public NavigateCommand(NavigationStore navigationStore, Func<TViewModel> createViewModel) 
         {
             _navigationStore = navigationStore;
         }
 
         public override void Execute(object parameter)
         {
-            _navigationStore.CurrentViewModel = new LoginViewModel(_navigationStore);
+            _navigationStore.CurrentViewModel = _createViewModel();
         }
     }
 }
