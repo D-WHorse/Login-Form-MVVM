@@ -23,7 +23,7 @@ namespace Password_Form.ViewModels
 
         public static string ButtonClicked;
 
-        private IUserRepository userRepository;
+        //private IUserRepository userRepository;
 
         //Properties
         public string Username
@@ -102,13 +102,17 @@ namespace Password_Form.ViewModels
         //public ICommand ShowPasswordCommand { get; }
 
         //Constructor
-        public LoginViewModel(NavigationStore navigationStore)
+        public LoginViewModel(UserStore userStore, NavigationStore navigationStore)
         {
-            userRepository = new UserRepository();
-            //LoginCommand = new LoginCommand(new DashboardViewModel(), );
+            NavigationService<DashboardViewModel> navigationService = new NavigationService<DashboardViewModel>(
+                navigationStore,
+                () => new DashboardViewModel(userStore, navigationStore));
+            
+            LoginCommand = new LoginCommand(this, userStore, navigationService);
+
             NavigateToRegistrationCommand = 
                 new NavigateCommand<RegistrationViewModel>(new NavigationService<RegistrationViewModel>
-                (navigationStore, () => new RegistrationViewModel(navigationStore)));
+                (navigationStore, () => new RegistrationViewModel(userStore, navigationStore)));
         }
 
         /*private bool CanExecuteLoginCommand(object obj)

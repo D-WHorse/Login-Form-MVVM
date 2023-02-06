@@ -2,50 +2,22 @@
 using Password_Form.Repositories;
 using Password_Form.Stores;
 using System.Threading;
+using System.Windows.Input;
 
 namespace Password_Form.ViewModels
 {
     public class DashboardViewModel : ViewModelBase
     {
         //Fields
-        private UserAccountModel _currentUserAccount;
-        private IUserRepository userRepository;
+        private UserStore _userStore;
 
-        public UserAccountModel CurrentUserAccount
+        public string Name => _userStore.CurrentUser?.Name;
+        public string LastName => _userStore.CurrentUser?.LastName;
+        //public ICommand NavigateToCommand { get; }
+
+        public DashboardViewModel(UserStore userStore, NavigationStore navigationStore)
         {
-            get
-            {
-                return _currentUserAccount;
-            }
-
-            set
-            {
-                _currentUserAccount = value;
-                OnPropertyChanged(nameof(CurrentUserAccount));
-            }
-        }
-
-        public DashboardViewModel(NavigationStore navigationStore)
-        {
-            userRepository = new UserRepository();
-            CurrentUserAccount = new UserAccountModel();
-            LoadCurrentUserData();
-        }
-
-        private void LoadCurrentUserData()
-        {
-            var user = userRepository.GetByUsername(Thread.CurrentPrincipal.Identity.Name);
-            if (user != null)
-            {
-                CurrentUserAccount.Username = user.Username;
-                CurrentUserAccount.DisplayName = $"Welcome {user.Name} {user.LastName} ;)";
-                CurrentUserAccount.ProfilePicture = null;
-            }
-            else
-            {
-                CurrentUserAccount.DisplayName="Invalid user, not logged in";
-                //Hide child views.
-            }
+            _userStore=userStore;
         }
     }
 }

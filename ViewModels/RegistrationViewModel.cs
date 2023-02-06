@@ -142,13 +142,13 @@ namespace Password_Form.ViewModels
         public ICommand NavigateToLoginCommand { get; }
         public ICommand ShowPasswordCommand { get; }
 
-        public RegistrationViewModel(NavigationStore navigationStore)
+        public RegistrationViewModel(UserStore userStore, NavigationStore navigationStore)
         {
             userRepository = new UserRepository();
             //RegistrationCommand = new ViewModelCommand(ExecuteRegistrationCommand, CanExecuteRegistrationCommand);
             NavigateToLoginCommand =
                 new NavigateCommand<LoginViewModel>(new NavigationService<LoginViewModel>
-                (navigationStore, () => new LoginViewModel(navigationStore)));
+                (navigationStore, () => new LoginViewModel(userStore, navigationStore)));
         }
 
         private bool CanExecuteRegistrationCommand(object obj)

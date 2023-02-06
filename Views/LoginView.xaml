@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Password_Form" 
         xmlns:customcontrols="clr-namespace:Password_Form.CustomControls"
         d:DesignHeight="531"
-        d:DesignWidth="365"
+        d:DesignWidth="780"
         mc:Ignorable="d">
 
     <UserControl.Resources>

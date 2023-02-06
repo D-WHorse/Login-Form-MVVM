@@ -16,5 +16,6 @@ namespace Password_Form.Models
         public string LastName { get; set; }
         public bool IsAdmin { get; set; }
         public bool IsRestricted { get; set; }
+        public bool IsBanned { get; set; }
     }
 }

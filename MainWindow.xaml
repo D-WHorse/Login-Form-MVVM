@@ -9,8 +9,8 @@
     xmlns:views="clr-namespace:Password_Form.Views"
     xmlns:vm="clr-namespace:Password_Form.ViewModels"
     Title="Шок Шок лох"
-    Width="365"
-    Height="565"
+    Height="531"
+    Width="780"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
@@ -39,6 +39,9 @@
             <DataTemplate DataType="{x:Type vm:RegistrationViewModel}">
                 <views:RegistrationView />
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:DashboardViewModel}">
+                <views:DashboardView />
+            </DataTemplate>
         </Grid.Resources>
 
         <Grid
@@ -48,7 +51,7 @@
             <Polygon
                 Fill="white"
                 Opacity="0.2"
-                Points="107,0,                  115,7,                  249,7                  257,0" />
+                Points="0,0,8,7,142,7,150,0" HorizontalAlignment="Center"/>
             <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                 <Image
                     Name="MinButton"

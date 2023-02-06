@@ -12,13 +12,13 @@ namespace Password_Form
     {
         //private SqlService _sqlService;
         private readonly NavigationStore _navigationStore;
-        //private readonly UserStore _userStore;
+        private readonly UserStore _userStore;
 
         public App()
         {
             //_sqlService = new SqlService();
             _navigationStore = new NavigationStore();
-            //_userStore = new UserStore();
+            _userStore = new UserStore();
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -26,7 +26,7 @@ namespace Password_Form
             //INavigationService<LoginViewModel> loginNavigationService = CreateLoginVeiwModel();
             //loginNavigationService.Navigate();
 
-            _navigationStore.CurrentViewModel = new LoginViewModel(_navigationStore);
+            _navigationStore.CurrentViewModel = new LoginViewModel(_userStore, _navigationStore);
 
             MainWindow = new MainWindow()
             {
